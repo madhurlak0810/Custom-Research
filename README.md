@@ -1,22 +1,22 @@
 # Research Scrapper with Ollama
 
-## 🚀 Quick Start
+## Quick Start
 
 The scrapper is now working with Ollama and **REAL arXiv API**! Here are the key files:
 
-- `scrapper_sqlite.py` - Real arXiv scrapper with SQLite (✅ **WORKING!**)
+- `scrapper_sqlite.py` - Real arXiv scrapper with SQLite (WORKING!)
 - `run_scrapper.py` - Easy-to-use runner with configurable parameters
 - `search.py` - Search script to query your research database
 - `.env` - Configuration file for default settings
 
-## 📋 Current Status
+## Current Status
 
-✅ **Working**: Ollama embedding generation (768-dimension vectors)  
-✅ **Working**: Real arXiv API using urllib (HTTP redirect issues fixed!)  
-✅ **Working**: SQLite database storage with semantic search  
-✅ **Working**: Semantic search functionality  
+**Working**: Ollama embedding generation (768-dimension vectors)  
+**Working**: Real arXiv API using urllib (HTTP redirect issues fixed!)  
+**Working**: SQLite database storage with semantic search  
+**Working**: Semantic search functionality  
 
-## 🔧 How to Use
+## How to Use
 
 ### Quick Start - Scrape Real Papers:
 ```bash
@@ -44,7 +44,7 @@ python3 run_scrapper.py --db-path "ai_papers.db" --query "artificial intelligenc
 python3 search.py --query "deep learning" --show-abstract --top-k 3
 ```  
 
-## 🔧 How to Change Parameters
+## How to Change Parameters
 
 ### Method 1: Using the Runner Script (Easiest)
 
@@ -89,7 +89,7 @@ python3 scrapper_sqlite.py --query "deep learning" --max-results 20 --embed-batc
 python3 search.py --query "reinforcement learning" --top-k 5
 ```
 
-## 🔍 Searching Your Database
+## Searching Your Database
 
 After scraping papers, use the search script to find relevant papers:
 
@@ -107,7 +107,7 @@ python3 search.py --query "machine learning" --show-abstract
 python3 search.py --query "neural networks" --db-path "my_research.db"
 ```
 
-## 🎯 Common Parameter Changes
+## Common Parameter Changes
 
 ### 1. Change Search Query
 ```bash
@@ -142,10 +142,10 @@ python3 run_scrapper.py --ollama-model "your-model-name"
 python3 run_scrapper.py --db-path "/path/to/your/database.db"
 ```
 
-## 🔍 Available Models in Your Ollama
+## Available Models in Your Ollama
 
 Current available model:
-- `nomic-embed-text` ✅ (768 dimensions)
+- `nomic-embed-text` (768 dimensions)
 
 To add more embedding models:
 ```bash
@@ -153,11 +153,11 @@ ollama pull mxbai-embed-large    # Example: different embedding model
 ollama pull all-minilm           # Example: another option
 ```
 
-## 📊 Example Outputs
+## Example Outputs
 
 ### Successful Scraping Example:
 ```
-🔧 Configuration:
+Configuration:
    Query: 'quantum computing'
    Max results: 5
    Embed batch: 2
@@ -165,26 +165,26 @@ ollama pull all-minilm           # Example: another option
    Ollama URL: http://localhost:11434
    Ollama model: nomic-embed-text
 
-🚀 Running arXiv scrapper...
+Running arXiv scrapper...
 Fetching 5 papers for query: 'quantum computing'
 Request URL: http://export.arxiv.org/api/query?search_query=all:quantum+computing&start=0&max_results=5
 Found 5 papers
   - Paper 1: The Rise of Quantum Internet Computing...
   - Paper 2: Unconventional Quantum Computing Devices...
-✓ Successfully fetched 5 papers
+Successfully fetched 5 papers
 Generating embeddings...
 Embedding: 100%|████████| 3/3 [00:00<00:00, 3.70it/s]
-✅ Scrapper completed successfully!
+Scrapper completed successfully!
 ```
 
 ### Successful Search Example:
 ```
-🔍 Searching for: 'neural networks'
-📄 Database: papers.db
+Searching for: 'neural networks'
+Database: papers.db
 
 Generating embedding for: 'neural networks'
 Searching through 13 papers...
-📊 Found 3 results:
+Found 3 results:
 
 1. Lecture Notes: Optimization for Machine Learning (similarity: 0.710)
    arXiv ID: 1909.03550v1
@@ -192,7 +192,7 @@ Searching through 13 papers...
    PDF: http://arxiv.org/pdf/1909.03550v1
 ```
 
-## 🛠️ Troubleshooting
+## Troubleshooting
 
 ### If Ollama is not responding:
 ```bash
@@ -207,13 +207,13 @@ ollama serve
 - Reduce `--embed-batch` to 1 or 2
 - Reduce `--max-results` for testing
 
-## 🎉 What's New - arXiv API Fixed!
+## What's New - arXiv API Fixed!
 
-✅ **Fixed HTTP 301 redirect issues** by using urllib instead of arxiv library  
-✅ **Real paper scraping now works** - no more demo-only mode  
-✅ **Robust XML parsing** handles arXiv API responses properly  
-✅ **Search functionality** to query your research database  
-✅ **Full semantic search** with cosine similarity scoring  
-✅ **Simplified codebase** with only essential files
+**Fixed HTTP 301 redirect issues** by using urllib instead of arxiv library  
+**Real paper scraping now works** - no more demo-only mode  
+**Robust XML parsing** handles arXiv API responses properly  
+**Search functionality** to query your research database  
+**Full semantic search** with cosine similarity scoring  
+**Simplified codebase** with only essential files
 
-The scrapper now successfully fetches real papers from arXiv and stores them with embeddings! 🎉
+The scrapper now successfully fetches real papers from arXiv and stores them with embeddings!
