@@ -48,7 +48,6 @@ A complete serverless research paper ingestion and search system built on AWS. T
 ├── common/               # Shared utilities
 │   ├── bedrock_utils.py  # AI services integration
 │   └── db_utils.py       # Database operations
-├── bedrock_utils.py     # Standalone utility (legacy)
 └── AWS_DEPLOYMENT_GUIDE.md
 ```
 
