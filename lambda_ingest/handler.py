@@ -137,6 +137,12 @@ def main(event, context):
         if not papers:
             return {
                 'statusCode': 404,
+                'headers': {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                    'Access-Control-Allow-Methods': 'GET,POST,OPTIONS'
+                },
                 'body': json.dumps({'error': 'No papers found'})
             }
         
@@ -212,11 +218,17 @@ def main(event, context):
                 })
             }
         
-        # Return success response
+        # Return response
         return {
             'statusCode': 200,
+            'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                'Access-Control-Allow-Methods': 'GET,POST,OPTIONS'
+            },
             'body': json.dumps({
-                'message': f'Successfully processed {processed_count} papers',
+                'message': f"Successfully processed {processed_count} papers",
                 'total_papers_fetched': len(papers),
                 'processed_count': processed_count,
                 'database_enabled': database_enabled,
@@ -236,5 +248,11 @@ def main(event, context):
         logger.error(f"Error in ingest handler: {e}")
         return {
             'statusCode': 500,
+            'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                'Access-Control-Allow-Methods': 'GET,POST,OPTIONS'
+            },
             'body': json.dumps({'error': str(e)})
         }

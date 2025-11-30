@@ -45,6 +45,12 @@ def main(event, context):
         if not user_query:
             return {
                 'statusCode': 400,
+                'headers': {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                    'Access-Control-Allow-Methods': 'GET,POST,OPTIONS'
+                },
                 'body': json.dumps({'error': 'Query is required'})
             }
         
@@ -68,6 +74,12 @@ def main(event, context):
         if not relevant_chunks:
             return {
                 'statusCode': 200,
+                'headers': {
+                    'Content-Type': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                    'Access-Control-Allow-Methods': 'GET,POST,OPTIONS'
+                },
                 'body': json.dumps({
                     'response': 'I could not find relevant information to answer your query.',
                     'sources': []
@@ -93,6 +105,12 @@ def main(event, context):
         
         return {
             'statusCode': 200,
+            'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                'Access-Control-Allow-Methods': 'GET,POST,OPTIONS'
+            },
             'body': json.dumps({
                 'response': response,
                 'sources': sources,
@@ -104,6 +122,12 @@ def main(event, context):
         logger.error(f"Error in chat handler: {e}")
         return {
             'statusCode': 500,
+            'headers': {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': 'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token',
+                'Access-Control-Allow-Methods': 'GET,POST,OPTIONS'
+            },
             'body': json.dumps({'error': str(e)})
         }
 
