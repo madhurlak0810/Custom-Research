@@ -182,7 +182,7 @@ class ResearchAssistantUI {
                 },
                 body: JSON.stringify({
                     query: query,
-                    max_papers: maxPapers
+                    max_results: maxPapers
                 })
             });
 
