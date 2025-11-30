@@ -1,0 +1,132 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Database files
+*.db
+*.sqlite3
+papers.db
+
+# AWS CDK
+infrastructure/cdk.out/
+infrastructure/node_modules/
+infrastructure/cdk.context.json
+
+# AWS credentials and configs
+.aws/
+aws-exports.js
+
+# Lambda deployment packages
+*.zip
+
+# Logs
+*.log
+logs/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+
+# Coverage reports
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# PyCharm
+.idea/
+
+# Secrets and API keys
+*.key
+*.pem
+secrets.json
+
+# CDK asset staging
+infrastructure/cdk.out/
+infrastructure/.cdk.staging/
+
+# Lambda layers
+lambda_layer/python/__pycache__/
+lambda_layer/python/*.pyc
+
+# Backup files
+*.bak
+*.backup
+
+# Large model files
+*.bin
+*.safetensors
+*.onnx
+
+# Data files (if you don't want to track large datasets)
+data/
+*.csv
+*.json.gz
+*.parquet
+
+# Configuration overrides
+config.local.py
+local_config.py
