@@ -45,7 +45,7 @@ export class DatabaseStack extends cdk.Stack {
 
       // Cost control
       scaling: {
-        minCapacity: 0.5, // lowest ACU
+        minCapacity: 1, // lowest ACU
         maxCapacity: 1,   // prevent bill shock
         autoPause: cdk.Duration.minutes(30), // automatically pause
       },

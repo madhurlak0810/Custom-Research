@@ -40,7 +40,7 @@ export class LambdaStack extends cdk.Stack {
     this.scraperLambda = new lambda.Function(this, 'ScraperLambda', {
       runtime: lambda.Runtime.PYTHON_3_11,
       handler: 'scraper.handler',
-      code: lambda.Code.fromAsset('lambda/scraper'),
+      code: lambda.Code.fromAsset('../lambda/scraper'),
       vpc,
       securityGroups: dbCluster.connections.securityGroups,
       role: lambdaRole,
@@ -58,7 +58,7 @@ export class LambdaStack extends cdk.Stack {
     this.searchLambda = new lambda.Function(this, 'SearchLambda', {
       runtime: lambda.Runtime.PYTHON_3_11,
       handler: 'search.handler',
-      code: lambda.Code.fromAsset('lambda/search'),
+      code: lambda.Code.fromAsset('../lambda/search'),
       vpc,
       securityGroups: dbCluster.connections.securityGroups,
       role: lambdaRole,
