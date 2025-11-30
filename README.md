@@ -43,6 +43,11 @@ A complete serverless research paper ingestion and search system built on AWS. T
 │   └── common/
 │       ├── bedrock_utils.py
 │       └── db_utils.py
+├── chat_ui/               # Web interface
+│   ├── index.html
+│   ├── style.css
+│   ├── script.js
+│   └── README.md
 ├── lambda_layer/          # Python dependencies layer
 │   └── python/
 ├── common/               # Shared utilities
@@ -74,13 +79,44 @@ npm install
 cdk deploy --require-approval never
 ```
 
-3. **Note the API endpoint** from deployment outputs:
+3. **Access the deployed system:**
 ```
 Outputs:
 ServerlessRagStack.ApiEndpoint = https://xxxxx.execute-api.us-east-1.amazonaws.com/prod/
+ServerlessRagStack.ChatUIUrl = http://ec2-xxx-xxx-xxx-xxx.compute-1.amazonaws.com
+ServerlessRagStack.ChatUIInstanceId = i-1234567890abcdef0
+```
+
+The Chat UI will be automatically deployed and configured with your API endpoint.
+
+4. **Optional - Local Development:**
+```bash
+cd chat_ui
+python -m http.server 8000
+# Then manually configure the API endpoint in the UI
 ```
 
 ## Usage
+
+### Web Interface (Recommended)
+
+The system includes a hosted web interface that's automatically deployed:
+
+1. **Access the web interface** using the ChatUIUrl from deployment outputs
+2. **Start using immediately** - the API endpoint is pre-configured
+3. **Ingest papers** on topics of interest
+4. **Chat** with the AI about your research papers
+
+### Local Web Interface
+
+For development or customization:
+
+1. Open `chat_ui/index.html` in your browser
+2. Configure your API endpoint URL
+3. Ingest papers on topics of interest
+4. Chat with the AI about your research papers
+
+### API Endpoints
 
 The system provides REST API endpoints for paper ingestion and semantic search. Use any HTTP client or build your own interface.
 

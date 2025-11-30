@@ -28,6 +28,15 @@ env/
 venv/
 ENV/
 env.bak/
+
+# Generated configuration files
+chat_ui/config.js
+!chat_ui/config.js.template
+
+# EC2 and deployment artifacts
+*.pem
+*.key
+setup-logs/
 venv.bak/
 
 # Environment variables
