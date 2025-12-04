@@ -4,9 +4,33 @@ class ResearchAssistantUI {
         this.currentTopic = 'All Topics';
         this.topics = [];
         
+        // Configure marked options for better markdown rendering
+        if (typeof marked !== 'undefined') {
+            marked.setOptions({
+                breaks: true,
+                gfm: true,
+                sanitize: false,
+                highlight: function(code, lang) {
+                    return code; // Simple highlighting, can be enhanced with syntax highlighter
+                }
+            });
+        }
+        
         this.initializeEventListeners();
         this.loadConfig();
         this.loadTopics();
+    }
+
+    parseMarkdown(content) {
+        if (typeof marked !== 'undefined') {
+            return marked.parse(content);
+        }
+        // Fallback: basic markdown-like formatting
+        return content
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+            .replace(/`(.*?)`/g, '<code>$1</code>')
+            .replace(/\n/g, '<br>');
     }
 
     initializeEventListeners() {
@@ -305,11 +329,16 @@ class ResearchAssistantUI {
             `;
         }
 
+        // Parse content as markdown if it's a bot message
+        const formattedContent = sender === 'bot' && !isLoading ? 
+            this.parseMarkdown(content) : 
+            `<p>${content}</p>`;
+
         messageDiv.innerHTML = `
             <div class="message-content">
                 <i class="${icon}"></i>
                 <div>
-                    <p>${content}</p>
+                    <div class="message-text">${formattedContent}</div>
                     ${sourcesHtml}
                 </div>
             </div>
