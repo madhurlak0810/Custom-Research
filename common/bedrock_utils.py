@@ -1,12 +1,20 @@
 import json
 import boto3
 import logging
+import os
 from typing import List, Dict, Any
 
 logger = logging.getLogger(__name__)
 
-# Initialize Bedrock client
-bedrock_runtime = boto3.client('bedrock-runtime', region_name='us-east-1')
+# Lazy initialization of Bedrock client
+_bedrock_runtime = None
+
+def get_bedrock_client():
+    """Get or create Bedrock runtime client"""
+    global _bedrock_runtime
+    if _bedrock_runtime is None:
+        _bedrock_runtime = boto3.client('bedrock-runtime', region_name='us-east-1')
+    return _bedrock_runtime
 
 # Model configurations
 EMBEDDING_MODEL = "amazon.titan-embed-text-v2:0"
@@ -15,6 +23,7 @@ CHAT_MODEL = "openai.gpt-oss-20b-1:0"  # Using OpenAI model via Bedrock
 def generate_embeddings(texts: List[str]) -> List[List[float]]:
     """Generate embeddings for a list of texts using Amazon Titan"""
     try:
+        bedrock_runtime = get_bedrock_client()
         embeddings = []
         
         for text in texts:
@@ -41,6 +50,7 @@ def generate_embeddings(texts: List[str]) -> List[List[float]]:
 def generate_chat_response(messages: List[Dict[str, str]]) -> str:
     """Generate chat response using OpenAI GPT model via AWS Bedrock"""
     try:
+        bedrock_runtime = get_bedrock_client()
         # Convert messages to the format expected by OpenAI models in Bedrock
         formatted_messages = []
         for msg in messages:

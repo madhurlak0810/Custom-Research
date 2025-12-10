@@ -8,6 +8,20 @@ import urllib.parse
 import xml.etree.ElementTree as ET
 from datetime import datetime
 
+# Configure SSL certificates BEFORE any boto3 imports
+# Use system CA bundle instead of certifi
+ca_bundle_paths = [
+    '/etc/pki/tls/certs/ca-bundle.crt',  # Amazon Linux
+    '/etc/ssl/certs/ca-certificates.crt',  # Debian/Ubuntu
+    '/etc/ssl/ca-bundle.pem',  # OpenSUSE
+]
+
+for ca_path in ca_bundle_paths:
+    if os.path.exists(ca_path):
+        os.environ['AWS_CA_BUNDLE'] = ca_path
+        os.environ['REQUESTS_CA_BUNDLE'] = ca_path
+        break
+
 # Set up logging first
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
