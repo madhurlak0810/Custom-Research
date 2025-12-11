@@ -292,8 +292,14 @@ cdk destroy
 - [ ] Collaboration features
 - [ ] Citation network analysis
 
-## Contributing
+## Cost Comparison Table
 
-1. Fork the repository
-2. Create a feature branch
-3. Submit a pull request with clear descriptions
+| Component                         | **Your AWS RAG System**                        | **ChatGPT Research Mode**                          |
+| --------------------------------- | ---------------------------------------------- | -------------------------------------------------- |
+| **Embedding cost**                | $0.0001–$0.0004 per 1K tokens (Titan v2)       | Included in subscription (no transparency)         |
+| **Vector DB retrieval**           | $0.000005–$0.00003                             | Included                                           |
+| **LLM inference**                 | $0.0004–$0.02 per 1K tokens (depends on model) | Included (but runs expensive GPT-4/5-level models) |
+| **API Gateway**                   | $0.000002 per request                          | N/A                                                |
+| **Lambda execution**              | $0.00002–$0.00008 per request                  | N/A                                                |
+| **EC2 hosting UI**                | Fixed cost ~$9/month                           | Included                                           |
+| **TOTAL per request (realistic)** | **$0.002 – $0.015 per query**                  | **~$0.04 – $0.12 per query (hidden cost)**         |
