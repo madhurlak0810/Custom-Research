@@ -241,16 +241,16 @@ The system uses least-privilege IAM roles with permissions for:
 ## Cost Optimization
 
 - **Lambda** - Pay per invocation, cold start optimized
+- **API Gateway** - Pay per request
 - **Aurora Serverless** - Auto-scaling database, pay for what you use
 - **Bedrock** - Pay per token for embeddings and chat
-- **API Gateway** - Pay per request
 
 ## Monitoring
 
 - CloudWatch logs for Lambda functions
+- Bedrock usage metrics
 - API Gateway metrics and access logs
 - Aurora performance insights
-- Bedrock usage metrics
 
 ## Troubleshooting
 
