@@ -78,7 +78,7 @@ export class ServerlessRagStack extends cdk.Stack {
     // RDS PostgreSQL with pgvector
     const database = new rds.DatabaseCluster(this, 'RagDatabase', {
       engine: rds.DatabaseClusterEngine.auroraPostgres({
-        version: rds.AuroraPostgresEngineVersion.VER_16_6,
+        version: rds.AuroraPostgresEngineVersion.VER_16_13,
       }),
       credentials: rds.Credentials.fromGeneratedSecret('ragadmin'),
       defaultDatabaseName: 'ragdb',
