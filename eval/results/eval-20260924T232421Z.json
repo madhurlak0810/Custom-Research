@@ -1,0 +1,266 @@
+{
+  "summary": {
+    "label": "September 2026 redeploy",
+    "timestamp": "2026-09-24T23:24:21.283437+00:00",
+    "papers_indexed": 65,
+    "papers_indexed_source": "distinct inserts in ingest logs (7-day retention)",
+    "chat": {
+      "requests": 20,
+      "success_rate": 1.0,
+      "median_s": 8.737,
+      "p90_s": 10.163,
+      "warm_median_s": 8.351,
+      "first_request_s": 10.163,
+      "median_best_cosine_distance": 0.455
+    },
+    "ingest": {
+      "requests": 0,
+      "median_per_paper_s": null,
+      "total_inserted": 0,
+      "total_lambda_s": 0
+    },
+    "cost": {
+      "fixed_per_day": {
+        "nat_gateway": 1.08,
+        "aurora_compute": 1.7587,
+        "chat_ui_ec2": 0.2496,
+        "public_ipv4": 0.24,
+        "secrets_manager": 0.0133
+      },
+      "fixed_total_per_day": 3.34,
+      "aurora_avg_acu": 0.611,
+      "aurora_acu_source": "CloudWatch 24h average",
+      "per_query_usd": 0.000619,
+      "token_source": "CloudWatch AWS/Bedrock",
+      "tokens_per_query": {
+        "chat_in": 1309,
+        "chat_out": 1565
+      },
+      "queries_per_day_assumed": 100,
+      "total_per_day": 3.4
+    }
+  },
+  "ingest": [],
+  "chat": [
+    {
+      "question": "What are recent developments in retrieval augmented generation?",
+      "repeat": 0,
+      "status": 200,
+      "ok": true,
+      "latency_s": 10.163,
+      "n_sources": 5,
+      "best_cosine_distance": 0.424,
+      "answer_chars": 7006,
+      "error": null
+    },
+    {
+      "question": "How do large language models handle long context?",
+      "repeat": 0,
+      "status": 200,
+      "ok": true,
+      "latency_s": 8.351,
+      "n_sources": 5,
+      "best_cosine_distance": 0.537,
+      "answer_chars": 8077,
+      "error": null
+    },
+    {
+      "question": "What techniques reduce hallucination in language models?",
+      "repeat": 0,
+      "status": 200,
+      "ok": true,
+      "latency_s": 8.737,
+      "n_sources": 5,
+      "best_cosine_distance": 0.603,
+      "answer_chars": 8693,
+      "error": null
+    },
+    {
+      "question": "How are diffusion models used for image generation?",
+      "repeat": 0,
+      "status": 200,
+      "ok": true,
+      "latency_s": 8.824,
+      "n_sources": 5,
+      "best_cosine_distance": 0.376,
+      "answer_chars": 8730,
+      "error": null
+    },
+    {
+      "question": "What are the main challenges of RLHF?",
+      "repeat": 0,
+      "status": 200,
+      "ok": true,
+      "latency_s": 7.39,
+      "n_sources": 5,
+      "best_cosine_distance": 0.441,
+      "answer_chars": 6363,
+      "error": null
+    },
+    {
+      "question": "How do graph neural networks scale to large graphs?",
+      "repeat": 0,
+      "status": 200,
+      "ok": true,
+      "latency_s": 8.778,
+      "n_sources": 5,
+      "best_cosine_distance": 0.455,
+      "answer_chars": 7903,
+      "error": null
+    },
+    {
+      "question": "What problems is quantum machine learning expected to speed up?",
+      "repeat": 0,
+      "status": 200,
+      "ok": true,
+      "latency_s": 5.851,
+      "n_sources": 5,
+      "best_cosine_distance": 0.305,
+      "answer_chars": 6683,
+      "error": null
+    },
+    {
+      "question": "Which evaluation benchmarks are commonly used for LLMs?",
+      "repeat": 0,
+      "status": 200,
+      "ok": true,
+      "latency_s": 6.697,
+      "n_sources": 5,
+      "best_cosine_distance": 0.625,
+      "answer_chars": 9315,
+      "error": null
+    },
+    {
+      "question": "How is reward modeling done in reinforcement learning from human feedback?",
+      "repeat": 0,
+      "status": 200,
+      "ok": true,
+      "latency_s": 9.706,
+      "n_sources": 5,
+      "best_cosine_distance": 0.4,
+      "answer_chars": 8489,
+      "error": null
+    },
+    {
+      "question": "What are the trade-offs between fine-tuning and retrieval for domain adaptation?",
+      "repeat": 0,
+      "status": 200,
+      "ok": true,
+      "latency_s": 10.624,
+      "n_sources": 5,
+      "best_cosine_distance": 0.665,
+      "answer_chars": 8146,
+      "error": null
+    },
+    {
+      "question": "What are recent developments in retrieval augmented generation?",
+      "repeat": 1,
+      "status": 200,
+      "ok": true,
+      "latency_s": 7.265,
+      "n_sources": 5,
+      "best_cosine_distance": 0.424,
+      "answer_chars": 8022,
+      "error": null
+    },
+    {
+      "question": "How do large language models handle long context?",
+      "repeat": 1,
+      "status": 200,
+      "ok": true,
+      "latency_s": 8.956,
+      "n_sources": 5,
+      "best_cosine_distance": 0.537,
+      "answer_chars": 7501,
+      "error": null
+    },
+    {
+      "question": "What techniques reduce hallucination in language models?",
+      "repeat": 1,
+      "status": 200,
+      "ok": true,
+      "latency_s": 6.79,
+      "n_sources": 5,
+      "best_cosine_distance": 0.603,
+      "answer_chars": 8127,
+      "error": null
+    },
+    {
+      "question": "How are diffusion models used for image generation?",
+      "repeat": 1,
+      "status": 200,
+      "ok": true,
+      "latency_s": 10.297,
+      "n_sources": 5,
+      "best_cosine_distance": 0.376,
+      "answer_chars": 8825,
+      "error": null
+    },
+    {
+      "question": "What are the main challenges of RLHF?",
+      "repeat": 1,
+      "status": 200,
+      "ok": true,
+      "latency_s": 6.28,
+      "n_sources": 5,
+      "best_cosine_distance": 0.441,
+      "answer_chars": 5825,
+      "error": null
+    },
+    {
+      "question": "How do graph neural networks scale to large graphs?",
+      "repeat": 1,
+      "status": 200,
+      "ok": true,
+      "latency_s": 8.197,
+      "n_sources": 5,
+      "best_cosine_distance": 0.455,
+      "answer_chars": 7852,
+      "error": null
+    },
+    {
+      "question": "What problems is quantum machine learning expected to speed up?",
+      "repeat": 1,
+      "status": 200,
+      "ok": true,
+      "latency_s": 5.053,
+      "n_sources": 5,
+      "best_cosine_distance": 0.305,
+      "answer_chars": 5339,
+      "error": null
+    },
+    {
+      "question": "Which evaluation benchmarks are commonly used for LLMs?",
+      "repeat": 1,
+      "status": 200,
+      "ok": true,
+      "latency_s": 4.395,
+      "n_sources": 5,
+      "best_cosine_distance": 0.625,
+      "answer_chars": 3590,
+      "error": null
+    },
+    {
+      "question": "How is reward modeling done in reinforcement learning from human feedback?",
+      "repeat": 1,
+      "status": 200,
+      "ok": true,
+      "latency_s": 9.089,
+      "n_sources": 5,
+      "best_cosine_distance": 0.4,
+      "answer_chars": 8906,
+      "error": null
+    },
+    {
+      "question": "What are the trade-offs between fine-tuning and retrieval for domain adaptation?",
+      "repeat": 1,
+      "status": 200,
+      "ok": true,
+      "latency_s": 9.205,
+      "n_sources": 5,
+      "best_cosine_distance": 0.665,
+      "answer_chars": 7994,
+      "error": null
+    }
+  ]
+}

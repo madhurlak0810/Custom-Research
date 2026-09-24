@@ -248,19 +248,20 @@ def initialize_database():
             
             execute_query(create_topics_query)
             execute_query(create_papers_query)
-            
-            # Create index for vector similarity search
-            create_index_query = """
-            CREATE INDEX IF NOT EXISTS papers_embedding_idx 
-            ON papers USING ivfflat (embedding vector_cosine_ops)
-            WITH (lists = 100)
-            """
-            execute_query(create_index_query)
-            
+
             logger.info("Database schema created successfully")
         else:
             logger.info("Database schema already exists")
-            
+
+        # HNSW index for vector similarity search. Unlike ivfflat it needs no training
+        # data, so it is safe to build on an empty table. Runs on every init so databases
+        # created with the old ivfflat index are migrated; both statements no-op once done.
+        execute_query("DROP INDEX IF EXISTS papers_embedding_idx")
+        execute_query("""
+            CREATE INDEX IF NOT EXISTS papers_embedding_hnsw_idx
+            ON papers USING hnsw (embedding vector_cosine_ops)
+        """)
+
     except Exception as e:
         logger.error(f"Error initializing database: {e}")
         raise

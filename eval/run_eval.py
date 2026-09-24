@@ -25,17 +25,12 @@ import base64
 import json
 import re
 import statistics
-import sys
 import time
-import urllib.error
-import urllib.request
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-import boto3
+from common import STACK_NAME, discover_stack, log, pct, post_json, session
 
-REGION = "us-east-1"
-STACK_NAME = "ServerlessRagStack"
 EMBEDDING_MODEL = "amazon.titan-embed-text-v2:0"
 CHAT_MODEL = "openai.gpt-oss-20b-1:0"
 
@@ -79,34 +74,9 @@ DEFAULT_QUESTIONS = [
 ]
 
 
-def log(msg):
-    print(msg, file=sys.stderr, flush=True)
-
-
-# ---------------------------------------------------------------- stack lookup
-
-def discover_stack(cfn):
-    stack = cfn.describe_stacks(StackName=STACK_NAME)["Stacks"][0]
-    outputs = {o["OutputKey"]: o["OutputValue"] for o in stack.get("Outputs", [])}
-    resources = cfn.describe_stack_resources(StackName=STACK_NAME)["StackResources"]
-
-    def physical(prefix, rtype):
-        for r in resources:
-            if r["ResourceType"] == rtype and r["LogicalResourceId"].startswith(prefix):
-                return r["PhysicalResourceId"]
-        return None
-
-    return {
-        "api_url": outputs["ApiEndpoint"].rstrip("/"),
-        "ingest_fn": physical("IngestFunction", "AWS::Lambda::Function"),
-        "chat_fn": physical("ChatFunction", "AWS::Lambda::Function"),
-        "db_cluster": physical("RagDatabase", "AWS::RDS::DBCluster"),
-    }
-
-
 # ---------------------------------------------------------------- ingest phase
 
-DURATION_RE = re.compile(r"REPORT RequestId.*?	Duration: ([\d.]+) ms")
+DURATION_RE = re.compile(r"REPORT RequestId.*?\tDuration: ([\d.]+) ms")
 INIT_RE = re.compile(r"Init Duration: ([\d.]+) ms")
 
 
@@ -165,20 +135,6 @@ def count_papers_from_logs(logs, fn_name, days=7):
 
 
 # ---------------------------------------------------------------- chat phase
-
-def post_json(url, body, timeout=60):
-    req = urllib.request.Request(url, data=json.dumps(body).encode(),
-                                 headers={"Content-Type": "application/json"}, method="POST")
-    t0 = time.perf_counter()
-    try:
-        with urllib.request.urlopen(req, timeout=timeout) as r:
-            status, text = r.status, r.read().decode()
-    except urllib.error.HTTPError as e:
-        status, text = e.code, e.read().decode(errors="replace")
-    except (urllib.error.URLError, TimeoutError) as e:
-        status, text = None, str(e)
-    return status, text, time.perf_counter() - t0
-
 
 def run_chat(api_url, questions, repeats, top_k):
     rows = []
@@ -294,13 +250,6 @@ def estimate_cost(cw, stack, chat_rows, chat_start, chat_end, queries_per_day, t
 
 # ---------------------------------------------------------------- report
 
-def pct(values, p):
-    if not values:
-        return None
-    s = sorted(values)
-    return s[min(len(s) - 1, round(p / 100 * (len(s) - 1)))]
-
-
 def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--topics", nargs="+", default=DEFAULT_TOPICS)
@@ -315,8 +264,8 @@ def main():
     ap.add_argument("--out-dir", default=str(Path(__file__).parent / "results"))
     args = ap.parse_args()
 
-    session = boto3.Session(region_name=REGION)
-    cfn, lam, cw, logs = (session.client(s) for s in ("cloudformation", "lambda", "cloudwatch", "logs"))
+    sess = session()
+    cfn, lam, cw, logs = (sess.client(s) for s in ("cloudformation", "lambda", "cloudwatch", "logs"))
 
     log(f"Discovering stack {STACK_NAME}...")
     stack = discover_stack(cfn)
