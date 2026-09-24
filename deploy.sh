@@ -35,7 +35,7 @@ echo "✅ Using Region: $REGION"
 
 # Install Node.js dependencies
 echo "📦 Installing CDK dependencies..."
-npm install
+(cd infrastructure && npm install)
 
 # Bootstrap CDK if needed
 echo "🏗️ Bootstrapping CDK..."

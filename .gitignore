@@ -55,6 +55,11 @@ papers.db
 infrastructure/cdk.out/
 infrastructure/node_modules/
 infrastructure/cdk.context.json
+# tsc emits alongside sources (declaration: true, no outDir)
+infrastructure/bin/*.js
+infrastructure/bin/*.d.ts
+infrastructure/lib/*.js
+infrastructure/lib/*.d.ts
 
 # AWS credentials and configs
 .aws/
@@ -117,9 +122,8 @@ secrets.json
 infrastructure/cdk.out/
 infrastructure/.cdk.staging/
 
-# Lambda layers
-lambda_layer/python/__pycache__/
-lambda_layer/python/*.pyc
+# Lambda layers - vendored by `pip install -t` in deploy.sh, rebuilt every run
+lambda_layer/python/
 
 # Backup files
 *.bak
